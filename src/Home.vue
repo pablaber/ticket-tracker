@@ -1,3 +1,14 @@
 <template>
-    <h1>Home View</h1>
+    <div class="home">
+        <div id="graph"></div>
+    </div>
 </template>
+
+<script>
+import Chart from './chart.js';
+Chart.test();
+</script>
+
+<style>
+
+</style>
