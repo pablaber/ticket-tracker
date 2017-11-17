@@ -1,16 +1,19 @@
 <template>
     <div id="app">
-        <navbar></navbar>
-        <router-view></router-view>
+        <h1>Ticket Tracker</h1>
+        <graph></graph>
     </div>
 </template>
 
 <script>
-import Navbar from './Navbar.vue'
+import Graph from './components/Graph.vue'
 export default {
     name: 'app',
     components: {
-        Navbar
+        Graph
+    },
+    data: function() {
+        return {};
     }
 }
 </script>
