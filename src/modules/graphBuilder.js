@@ -10,13 +10,15 @@ export default {
     initGraph: function(selector, sizeObj) {
         console.log(d3.select(selector));
         size = sizeObj;
+        var svgWidth = size.width + size.margins.left + size.margins.right;
+        var svgHeight = size.height + size.margins.top + size.margins.bottom;
         svg = d3.select(selector).append("svg")
-            .attr("width", size.width + size.margins.left + size.margins.right)
-            .attr("height", size.height + size.margins.top + size.margins.bottom);
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
 
         // loader by Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL
         loaderContainer = svg.append("g")
-            .attr("transform", "translate(100, 100)");
+            .attr("transform", "translate(" + (svgWidth/2 - 38/2) + "," + (svgHeight/2 - 38/2) + ")");
         loader = loaderContainer.append("g")
             .attr("width", "38")
             .attr("height", "38")
@@ -34,11 +36,20 @@ export default {
         loaderInner.append("path")
             .attr("d", "M36 18c0-9.94-8.06-18-18-18")
             .attr("transform", "rotate(-45, 18, 18)");
-
         rotate();
+
+        
 
     }
 };
+
+function showLoader() {
+    loaderContainer.style("display", "block");
+}
+
+function hideLoader() {
+    loaderContainer.style("display", "none");
+}
 
 function rotTween() {
     var i = d3.interpolate(0, 360);
