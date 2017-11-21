@@ -21,14 +21,25 @@ var sizeObj = {
 
 export default {
     name: 'Graph',
+    props: ['team'],
     mounted: function() {
         gb.initGraph("#graph", sizeObj);
-        this.$http.get('http://localhost:8080/api/current_prices_for_team?team=NYR').then(response => {
+        
+    },
+    watch: {
+        team: function(newVal) {
+            console.log("new URL");
+            var url = 'http://localhost:8080/api/current_prices_for_team?team=' + newVal;
+            gb.hideSelectText();
+            gb.showLoader();
+            this.$http.get(url).then(response => {
 
-            // get body data
-            console.log(response.body);
+                // get body data
+                gb.pricesForTeam(response.body);
+                gb.hideLoader();
 
-        });
+            });
+        }
     },
     data: function() {
         return {};

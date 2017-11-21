@@ -1,6 +1,6 @@
 import * as d3 from '../assets/d3/d3.min.js';
 
-var svg, size, loader, loaderContainer;
+var svg, size, loader, loaderContainer, selectText;
 
 
 export default {
@@ -18,7 +18,8 @@ export default {
 
         // loader by Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL
         loaderContainer = svg.append("g")
-            .attr("transform", "translate(" + (svgWidth/2 - 38/2) + "," + (svgHeight/2 - 38/2) + ")");
+            .attr("transform", "translate(" + (svgWidth/2 - 38/2) + "," + (svgHeight/2 - 38/2) + ")")
+            .style("display", "none");
         loader = loaderContainer.append("g")
             .attr("width", "38")
             .attr("height", "38")
@@ -38,6 +39,26 @@ export default {
             .attr("transform", "rotate(-45, 18, 18)");
         rotate();
 
+        selectText = svg.append("text")
+            .attr("transform", "translate(" + (svgWidth / 2) + "," + (svgHeight / 2) + ")")
+            .attr("text-anchor", "middle")
+            .text("Please select a team from the team select above.");
+
+    },
+    hideSelectText: function() {
+        selectText.style("display", "none");
+    },
+    showSelectText: function() {
+        selectText.style("display", "block");
+    },
+    hideLoader: function() {
+        loaderContainer.style("display", "none");
+    },
+    showLoader: function() {
+        loaderContainer.style("display", "block");
+    },
+    pricesForTeam: function(json) {
+        console.log(json);
     }
 };
 
