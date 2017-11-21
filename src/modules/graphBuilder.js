@@ -38,8 +38,6 @@ export default {
             .attr("transform", "rotate(-45, 18, 18)");
         rotate();
 
-        
-
     }
 };
 
